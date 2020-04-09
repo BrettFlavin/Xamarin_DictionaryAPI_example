@@ -26,34 +26,52 @@ namespace HW6_API
             var isConnected = CrossConnectivity.Current.IsConnected;
             if (isConnected == true)
             {
-                ConnectionLabel.Text = "Internet connected!";
+                DisplayAlert("Internet Connected!", "Enjoy the App!", "OK");
             }
             else
             {
-                ConnectionLabel.Text = "Internet *NOT* connected!";
+                DisplayAlert("Internet Not Connected!", "Please establish internet connection to continue", "OK");
             }
         }
 
-        async private void GetButton_Clicked(object sender, EventArgs e)
+
+        // event fired on Go Button click
+        // searches dictionary API for text entered into entry field
+        async private void GoButton_Clicked(object sender, EventArgs e)
         {
-            HttpClient client = new HttpClient();
-
-            var uri = new Uri(
-                string.Format(
-                    $"https://owlbot.info/api/v4/dictionary/" +
-                    $"API_KEY"  ));
-
-            var request = new HttpRequestMessage();
-            request.Method = HttpMethod.Get;
-            request.RequestUri = uri;
-
-            HttpResponseMessage response = await client.SendAsync(request);
-            //Word theWord = null;
-            if (response.IsSuccessStatusCode)
+            if (TextEntryField.Text != "")
             {
-                var content = await response.Content.ReadAsStringAsync();
-                //theWord = Word.FromJson(content);
+                // create a new HttpClient to handle the request
+                HttpClient client = new HttpClient();
+
+                //  create the URI
+                var uri = new Uri(
+                    string.Format(
+                        $"https://owlbot.info/api/v4/dictionary/" +
+                        $"API_KEY"));
+
+                // create the HttpRequest message
+                var request = new HttpRequestMessage();
+                request.Method = HttpMethod.Get;
+                request.RequestUri = uri;
+
+                // create the HttpResponse message
+                HttpResponseMessage response = await client.SendAsync(request);
+
+                //Word theWord = null;
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    //theWord = Word.FromJson(content);
+                }
             }
+        }
+
+        // event fired on Clear Button click
+        // clears all text from the entry field
+        private void ClearButton_Clicked(object sender, EventArgs e)
+        {
+            TextEntryField.Text = "";
         }
     }
 }

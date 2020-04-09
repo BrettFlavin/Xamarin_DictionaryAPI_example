@@ -5,22 +5,35 @@
              x:Class="HW6_API.MainPage"
              Title="DictionaryAPI"
              Padding="10">
+    
     <xfg:ContentPageGloss.BackgroundGradient>
         <xfg:Gradient Rotation="150">
-            <xfg:GradientStep StepColor="#ccd9ff" StepPercentage="1" />
+            <xfg:GradientStep StepColor="FloralWhite" StepPercentage="0" />
+            <xfg:GradientStep StepColor="LightSeaGreen" StepPercentage=".5" />
+            <xfg:GradientStep StepColor="FloralWhite" StepPercentage="1" />
         </xfg:Gradient>
     </xfg:ContentPageGloss.BackgroundGradient>
-
-    <StackLayout>
-        <Label x:Name="ConnectionLabel" 
-               FontSize="Large"
-               HorizontalOptions="Center"
-               VerticalOptions="CenterAndExpand" />
-
-        <Button x:Name="GetButton"
-                Text="GET"
-                HorizontalOptions="Center"
-                Clicked="GetButton_Clicked" />
+    
+    <StackLayout  Margin="5,0,5,0">
+        <Label Text="Dictionary Search" 
+               HorizontalOptions="Center" 
+               FontSize="25" />
+        <Entry x:Name="TextEntryField" 
+               Placeholder="Enter a word"
+               MaxLength="25"/>
+        
+        <!-- Go and Clear buttons -->
+        <StackLayout Orientation="Horizontal">            
+            <Button x:Name="GoButton"
+                    Text="G0!"
+                    HorizontalOptions="Center"
+                    Clicked="GoButton_Clicked" />
+            <Button x:Name="ClearButton"
+                    Text="Clear"
+                    HorizontalOptions="Center"
+                    Clicked="ClearButton_Clicked" />
+        </StackLayout>
+        
     </StackLayout>
 
 </ContentPage>
