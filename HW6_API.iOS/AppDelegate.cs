@@ -23,7 +23,7 @@ namespace HW6_API.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             Xamarin.Forms.Forms.Init();           
-            XFGloss.iOS.Library.Init();  // Add this call to Initialize XFGloss
+            XFGloss.iOS.Library.Init();  // Initialize XFGloss
 
             LoadApplication(new App());
 

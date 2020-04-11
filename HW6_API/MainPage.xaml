@@ -6,6 +6,7 @@
              Title="DictionaryAPI"
              Padding="10">
     
+    <!-- XFGloss background gradiant -->
     <xfg:ContentPageGloss.BackgroundGradient>
         <xfg:Gradient Rotation="150">
             <xfg:GradientStep StepColor="FloralWhite" StepPercentage="0" />
@@ -15,25 +16,38 @@
     </xfg:ContentPageGloss.BackgroundGradient>
     
     <StackLayout  Margin="5,0,5,0">
-        <Label Text="Dictionary Search" 
-               HorizontalOptions="Center" 
-               FontSize="25" />
+        <!-- Title Label -->
+        <Label Text="Search The Dictionary" 
+               FontSize="25"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+        
+        <!-- Entry field -->
         <Entry x:Name="TextEntryField" 
                Placeholder="Enter a word"
-               MaxLength="25"/>
+               MaxLength="25" />
         
-        <!-- Go and Clear buttons -->
+        <!-- Buttons (Go and Clear) -->
         <StackLayout Orientation="Horizontal">            
             <Button x:Name="GoButton"
                     Text="G0!"
-                    HorizontalOptions="Center"
                     Clicked="GoButton_Clicked" />
             <Button x:Name="ClearButton"
                     Text="Clear"
-                    HorizontalOptions="Center"
                     Clicked="ClearButton_Clicked" />
         </StackLayout>
-        
-    </StackLayout>
 
+        <!-- Display info of Word -->
+        <Label x:Name="typelabel" 
+               Text="{Binding type}"
+               TextColor ="Black"
+               FontAttributes="Italic" />
+        <Label x:Name="definitionlabel" 
+               Text="{Binding definition}"
+               TextColor="Black" />
+        <Label x:Name="examplelabel"
+               Text="{Binding example}"
+               TextColor="Black" />
+
+    </StackLayout>
 </ContentPage>
