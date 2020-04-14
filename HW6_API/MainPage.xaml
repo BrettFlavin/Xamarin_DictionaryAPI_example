@@ -16,7 +16,7 @@
     </xfg:ContentPageGloss.BackgroundGradient>
     
     <StackLayout  Margin="5,0,5,0">
-        <!-- page title -->
+        <!-- title -->
         <Label Text="Search The Dictionary" 
                FontSize="25"
                FontAttributes="Bold"
@@ -25,7 +25,10 @@
         <!-- Entry field -->
         <Entry x:Name="TextEntryField" 
                Placeholder="Enter a word"
-               MaxLength="25" />
+               MaxLength="20" 
+               Keyboard="Text"
+               IsTextPredictionEnabled="True"
+               ClearButtonVisibility="WhileEditing"/>
         
         <!-- Buttons (Go and Clear) -->
         <StackLayout Orientation="Horizontal">            
@@ -37,14 +40,22 @@
                     Clicked="ClearButton_Clicked" />
         </StackLayout>
         
-        <!-- the data returned from the API -->        
+        <!-- the data returned from the API search -->        
         <Image x:Name ="imagelabel" 
                HorizontalOptions="Start"
                Aspect="AspectFit" 
-               WidthRequest="100" 
-               HeightRequest="100" />        
-        <Label x:Name="typelabel" />        
-        <Label x:Name="definitionlabel" />        
+               WidthRequest="200" 
+               HeightRequest="200" />
+        <Label x:Name="typelabel" />
+        <BoxView x:Name="line1" 
+                 BackgroundColor="Black" 
+                 HeightRequest="2" 
+                 IsVisible="False" />
+        <Label x:Name="definitionlabel" />
+        <BoxView x:Name="line2" 
+                 BackgroundColor="Black" 
+                 HeightRequest="2" 
+                 IsVisible="False"/>
         <Label x:Name="examplelabel" />
         
      </StackLayout>
