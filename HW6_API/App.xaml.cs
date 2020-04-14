@@ -21,7 +21,7 @@ namespace HW6_API
             CrossConnectivity.Current.ConnectivityChanged += Current_ConnectivityChanged;
         }
 
-        // event fires when internet connectivivty changes
+        // event fires when internet connectivity changes
         // displays an alert and enables or disables buttons
         async private void Current_ConnectivityChanged(object sender, Plugin.Connectivity.Abstractions.ConnectivityChangedEventArgs e)
         {

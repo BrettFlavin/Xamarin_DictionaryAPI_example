@@ -16,7 +16,7 @@
     </xfg:ContentPageGloss.BackgroundGradient>
     
     <StackLayout  Margin="5,0,5,0">
-        <!-- Title Label -->
+        <!-- page title -->
         <Label Text="Search The Dictionary" 
                FontSize="25"
                FontAttributes="Bold"
@@ -36,18 +36,17 @@
                     Text="Clear"
                     Clicked="ClearButton_Clicked" />
         </StackLayout>
-
-        <!-- Display info of Word -->
-        <Label x:Name="typelabel" 
-               Text="{Binding type}"
-               TextColor ="Black"
-               FontAttributes="Italic" />
-        <Label x:Name="definitionlabel" 
-               Text="{Binding definition}"
-               TextColor="Black" />
-        <Label x:Name="examplelabel"
-               Text="{Binding example}"
-               TextColor="Black" />
-
-    </StackLayout>
+        
+        <!-- the data returned from the API -->        
+        <Image x:Name ="imagelabel" 
+               HorizontalOptions="Start"
+               Aspect="AspectFit" 
+               WidthRequest="100" 
+               HeightRequest="100" />        
+        <Label x:Name="typelabel" />        
+        <Label x:Name="definitionlabel" />        
+        <Label x:Name="examplelabel" />
+        
+     </StackLayout>
+    
 </ContentPage>

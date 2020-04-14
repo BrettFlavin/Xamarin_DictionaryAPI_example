@@ -12,7 +12,9 @@ using Newtonsoft.Json;
 namespace HW6_API
 {    
     public partial class MainPage : ContentPage
-    {       
+    {
+        Word theWord = null;
+
         public MainPage()
         {
             InitializeComponent();
@@ -45,6 +47,7 @@ namespace HW6_API
                 string toSearch = TextEntryField.Text;
 
                 // ***SANITIZE THE USER INPUT***
+                // spaces will break it
 
                 //  create a new URI for the request
                 var uri = new Uri(string.Format($"https://owlbot.info/api/v4/dictionary/" + toSearch));
@@ -53,18 +56,28 @@ namespace HW6_API
                 var request = new HttpRequestMessage();
                 request.Method = HttpMethod.Get;
                 request.RequestUri = uri;
-                //request.Headers.Add("Authorization: Token", "e779b93d8d67ff8d21dece3835eb9a3573822376");
+                // add the API's authorization token 
                 request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Token", "e779b93d8d67ff8d21dece3835eb9a3573822376");
 
                 // create the HttpResponse message
                 HttpResponseMessage response = await client.SendAsync(request);
 
-                Word searchWord = null;
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
-                    searchWord = Word.FromJson(content);
+                    theWord = JsonConvert.DeserializeObject<Word>(content);
+
+                    // set the image and labels
+                    imagelabel.Source = theWord.definitions[0].image_url;
+                    typelabel.Text = "Type: " + theWord.definitions[0].type;
+                    definitionlabel.Text = "Definition: " + theWord.definitions[0].definition;
+                    examplelabel.Text = "Example: " +  theWord.definitions[0].example;
                 }
+                else 
+                { 
+                    throw new Exception();
+                }
+
             }
         }
 
@@ -72,7 +85,14 @@ namespace HW6_API
         // clears all text from the entry field
         private void ClearButton_Clicked(object sender, EventArgs e)
         {
+            // clear the search box
             TextEntryField.Text = "";
+
+            // clear all  the labels
+            imagelabel.Source = "";
+            typelabel.Text = "";
+            definitionlabel.Text = "";
+            examplelabel.Text = "";
         }
     }
 }
